@@ -16,6 +16,8 @@ import {
     Info
 } from 'lucide-react';
 import { getAuthToken } from '@/utils/auth';
+import Sidebar from "@/components/Sidebar.tsx";
+import DashboardHeader from "@/components/DashboardHeader.tsx";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -42,6 +44,7 @@ interface ComplaintFormData {
 const CreateComplaint: React.FC = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -253,6 +256,20 @@ const CreateComplaint: React.FC = () => {
     const selectedCategory = categories.find(cat => cat.id.toString() === formData.category_id);
 
     return (
+        <div className="min-h-screen bg-gray-50 text-gray-900 flex">
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/40 z-20 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+            <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+            <div className="flex-1 flex flex-col overflow-hidden">
+                <DashboardHeader setSidebarOpen={setSidebarOpen} />
+
+                <main className="flex-1 overflow-y-auto px-6 py-8">
+                    <div className="max-w-7xl mx-auto space-y-8">
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -563,6 +580,10 @@ const CreateComplaint: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+                    </div>
+                </main>
             </div>
         </div>
     );
