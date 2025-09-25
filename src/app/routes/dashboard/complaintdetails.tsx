@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import {
     ArrowLeft,
@@ -27,6 +27,8 @@ import {
 } from 'lucide-react';
 import { getAuthToken } from '@/utils/auth';
 import { useUser } from '@/context/UserContext';
+import Sidebar from "@/components/Sidebar.tsx";
+import DashboardHeader from "@/components/DashboardHeader.tsx";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -93,6 +95,7 @@ const ComplaintDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const { user: currentUser } = useUser();
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const [complaint, setComplaint] = useState<ComplaintDetails | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -220,10 +223,28 @@ const ComplaintDetailsPage: React.FC = () => {
 
     if (isLoading) {
         return (
+            <div className="min-h-screen bg-gray-50 text-gray-900 flex">
+                {sidebarOpen && (
+                    <div
+                        className="fixed inset-0 bg-black/40 z-20 lg:hidden"
+                        onClick={() => setSidebarOpen(false)}
+                    />
+                )}
+                <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+                <div className="flex-1 flex flex-col overflow-hidden">
+                    <DashboardHeader setSidebarOpen={setSidebarOpen} />
+
+                    <main className="flex-1 overflow-y-auto px-6 py-8">
+                        <div className="max-w-7xl mx-auto space-y-8">
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
                     <p className="text-gray-600">Loading complaint details...</p>
+                </div>
+            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         );
@@ -231,6 +252,20 @@ const ComplaintDetailsPage: React.FC = () => {
 
     if (error || !complaint) {
         return (
+            <div className="min-h-screen bg-gray-50 text-gray-900 flex">
+                {sidebarOpen && (
+                    <div
+                        className="fixed inset-0 bg-black/40 z-20 lg:hidden"
+                        onClick={() => setSidebarOpen(false)}
+                    />
+                )}
+                <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+                <div className="flex-1 flex flex-col overflow-hidden">
+                    <DashboardHeader setSidebarOpen={setSidebarOpen} />
+
+                    <main className="flex-1 overflow-y-auto px-6 py-8">
+                        <div className="max-w-7xl mx-auto space-y-8">
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center max-w-md">
                     <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
@@ -256,12 +291,30 @@ const ComplaintDetailsPage: React.FC = () => {
                     </div>
                 </div>
             </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
         );
     }
 
     const isOwner = currentUser?.id === complaint.user_id;
 
     return (
+        <div className="min-h-screen bg-gray-50 text-gray-900 flex">
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/40 z-20 lg:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+            <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+            <div className="flex-1 flex flex-col overflow-hidden">
+                <DashboardHeader setSidebarOpen={setSidebarOpen} />
+
+                <main className="flex-1 overflow-y-auto px-6 py-8">
+                    <div className="max-w-7xl mx-auto space-y-8">
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -585,6 +638,10 @@ const ComplaintDetailsPage: React.FC = () => {
                         )}
                     </div>
                 </div>
+            </div>
+        </div>
+                    </div>
+                </main>
             </div>
         </div>
     );

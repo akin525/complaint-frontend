@@ -13,6 +13,8 @@ import PendingComplaintsPage from "@/app/routes/dashboard/PendingComplaintsPage.
 import InProgressComplaintsPage from "@/app/routes/dashboard/InProgressComplaintsPage.tsx";
 import ResolvedComplaintsPage from "@/app/routes/dashboard/ResolvedComplaintsPage.tsx";
 import CreateComplaint from "@/app/routes/dashboard/createcomplaint.tsx";
+import ComplaintDetailsPage from "@/app/routes/dashboard/complaintdetails.tsx";
+import ComplaintResponsePage from "@/app/routes/dashboard/ComplaintResponsePage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ export const router = createBrowserRouter([
         ),
     },
     {
+        path: "/complaints/:id",
+        Component: () => (
+            <ProtectedRoute>
+                <ComplaintDetailsPage/>
+            </ProtectedRoute>
+        ),
+    },
+    {
         path: "/complaints?status=pending",
         Component: () => (
             <ProtectedRoute>
@@ -92,6 +102,14 @@ export const router = createBrowserRouter([
         Component: () => (
             <ProtectedRoute>
                 <CreateComplaint/>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/complaints/create",
+        Component: () => (
+            <ProtectedRoute>
+                <ComplaintResponsePage/>
             </ProtectedRoute>
         ),
     },

@@ -297,7 +297,7 @@ export default function Dashboard() {
                                     title="Submit Complaint"
                                     description="File a new complaint or report an issue"
                                     icon={Plus}
-                                    link="/submit-complaint"
+                                    link="/complaints/create"
                                     color="indigo"
                                 />
                                 <QuickActionCard
