@@ -204,7 +204,7 @@ export default function RegisterPage() {
 
       const data = await res.json();
 
-      if (res.ok && data.success) {
+      if (res.ok && data.status) {
         sessionStorage.setItem("authToken", data.token);
         toast.success(data.message || "Account created successfully");
         window.location.href = "/dashboard";
