@@ -168,20 +168,20 @@ export default function Sidebar({
                 title: "Complaint Management",
                 items: [
                     {
-                        to: "/staff/complaints",
+                        to: "/complaints",
                         icon: <FileText size={20} />,
                         label: "All Complaints",
                         show: true
                     },
                     {
-                        to: "/staff/complaints?status=new",
+                        to: "/complaints?status=new",
                         icon: <Clock size={20} />,
                         label: "New Complaints",
                         badge: stats.pendingComplaints,
                         show: true
                     },
                     {
-                        to: "/staff/complaints?status=assigned",
+                        to: "/complaints?status=assigned",
                         icon: <UserCheck size={20} />,
                         label: "Assigned to Me",
                         show: true
