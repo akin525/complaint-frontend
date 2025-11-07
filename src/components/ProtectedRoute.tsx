@@ -109,9 +109,9 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
         }
 
         // Validate required fields for student complaint system
-        if (!data.user.student_id || !data.user.department) {
-            throw new Error("Incomplete student profile. Please contact administration.");
-        }
+        // if (!data.user.student_id || !data.user.department) {
+        //     throw new Error("Incomplete student profile. Please contact administration.");
+        // }
 
         return data;
     };
