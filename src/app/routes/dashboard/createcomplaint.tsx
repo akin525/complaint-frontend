@@ -220,9 +220,10 @@ const CreateComplaint: React.FC = () => {
             submitFormData.append('is_anonymous', formData.is_anonymous.toString());
 
             // Append attachments
-            attachments.forEach((attachment, index) => {
+            attachments.forEach((attachment) => {
                 submitFormData.append(`attachments[]`, attachment.file);
             });
+
 
             const response = await fetch(`${baseUrl}complaints`, {
                 method: 'POST',

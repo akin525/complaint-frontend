@@ -31,7 +31,13 @@ interface Status {
     color: string;
 }
 
-
+interface ComplaintUser {
+    id: number;
+    name: string;
+    email: string;
+    student_id?: string;
+    department?: string;
+}
 interface Complaint {
     id: number;
     user_id: number;
@@ -47,7 +53,7 @@ interface Complaint {
     updated_at: string;
     category: Category;
     status: Status;
-    user?: User;
+    user?: ComplaintUser;
 }
 
 interface ComplaintsResponse {

@@ -191,22 +191,33 @@ export default function Dashboard() {
             purple: "bg-purple-50 text-purple-600 hover:bg-purple-100"
         };
 
-        const Component = link ? Link : 'button';
-        const props = link ? { to: link } : { onClick };
+        const baseClasses = "bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-200 text-left w-full";
 
-        return (
-            <Component
-                {...props}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-200 text-left w-full"
-            >
+        const content = (
+            <>
                 <div className={`inline-flex p-3 rounded-xl mb-4 ${colorClasses[color as keyof typeof colorClasses]}`}>
                     <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
                 <p className="text-gray-600 text-sm">{description}</p>
-            </Component>
+            </>
+        );
+
+        if (link) {
+            return (
+                <Link to={link} className={baseClasses}>
+                    {content}
+                </Link>
+            );
+        }
+
+        return (
+            <button onClick={onClick} className={baseClasses}>
+                {content}
+            </button>
         );
     };
+
 
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900 flex">

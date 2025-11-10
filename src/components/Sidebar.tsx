@@ -46,7 +46,7 @@ export default function Sidebar({
     });
     const location = useLocation();
     const navigate = useNavigate();
-    const { user, logout } = useUser();
+    const { user } = useUser();
 
     useEffect(() => {
         setSidebarOpen(isOpen);
@@ -95,7 +95,7 @@ export default function Sidebar({
             console.error('Logout error:', error);
         } finally {
             // removeAuthToken();
-            logout();
+            // logout();
             navigate('/login');
             toast.success('Logged out successfully');
         }

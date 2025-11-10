@@ -29,6 +29,13 @@ interface Status {
     color: string;
 }
 
+interface ComplaintUser {
+    id: number;
+    name: string;
+    email: string;
+    student_id?: string;
+    department?: string;
+}
 
 interface Complaint {
     id: number;
@@ -45,11 +52,12 @@ interface Complaint {
     updated_at: string;
     category: Category;
     status: Status;
-    user?: User;
+    user?: ComplaintUser;
 }
 
+// Update the interface (around line 52)
 interface ComplaintsResponse {
-    current_page: number | null;
+    current_page: number;  // Remove | null
     data: Complaint[];
     first_page_url: string;
     from: number;
@@ -62,6 +70,8 @@ interface ComplaintsResponse {
     to: number;
     total: number;
 }
+
+
 
 import { getAuthToken } from '@/utils/auth';
 import Sidebar from "@/components/Sidebar.tsx";
@@ -536,23 +546,25 @@ const ResolvedComplaintsPage: React.FC = () => {
                                         Showing {complaints.from} to {complaints.to} of {complaints.total} results
                                     </div>
                                     <div className="flex items-center space-x-2">
+                                        // Then update the pagination buttons (lines 540 and 550) to use optional chaining:
                                         <button
-                                            onClick={() => fetchResolvedComplaints(complaints.current_page - 1, false)}
-                                            disabled={!complaints.prev_page_url}
+                                            onClick={() => fetchResolvedComplaints((complaints?.current_page || 1) - 1, false)}
+                                            disabled={!complaints?.prev_page_url}
                                             className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             Previous
                                         </button>
                                         <span className="px-3 py-2 text-sm font-medium text-gray-900">
-                                            Page {complaints.current_page} of {complaints.last_page}
-                                        </span>
+    Page {complaints?.current_page} of {complaints?.last_page}
+</span>
                                         <button
-                                            onClick={() => fetchResolvedComplaints(complaints.current_page + 1, false)}
-                                            disabled={!complaints.next_page_url}
+                                            onClick={() => fetchResolvedComplaints((complaints?.current_page || 1) + 1, false)}
+                                            disabled={!complaints?.next_page_url}
                                             className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             Next
                                         </button>
+
                                     </div>
                                 </div>
                             </div>

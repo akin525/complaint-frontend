@@ -1,6 +1,6 @@
 // src/pages/complaints/PendingComplaintsPage.tsx
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router';
+import { Link,  useSearchParams } from 'react-router';
 import { toast } from 'react-toastify';
 import {
     // Plus,
@@ -104,8 +104,8 @@ const PendingComplaintsPage: React.FC = () => {
     // const [selectedComplaints, setSelectedComplaints] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [categoryFilter, setCategoryFilter] = useState(searchParams.get('category') || '');
-    const [sortField, setSortField] = useState(searchParams.get('sort') || 'created_at');
-    const [sortDirection, setSortDirection] = useState(searchParams.get('direction') || 'desc');
+    // const [sortField, setSortField] = useState(searchParams.get('sort') || 'created_at');
+    // const [sortDirection, setSortDirection] = useState(searchParams.get('direction') || 'desc');
 
     const isStaff = user?.role === 'staff' || user?.role === 'admin';
 
@@ -124,8 +124,8 @@ const PendingComplaintsPage: React.FC = () => {
 
             if (searchTerm) params.append('search', searchTerm);
             if (categoryFilter) params.append('category_id', categoryFilter);
-            if (sortField) params.append('sort_field', sortField);
-            if (sortDirection) params.append('sort_direction', sortDirection);
+            // if (sortField) params.append('sort_field', sortField);
+            // if (sortDirection) params.append('sort_direction', sortDirection);
 
             const response = await fetch(`${baseUrl}complaints?${params.toString()}`, {
                 headers: {
@@ -153,7 +153,7 @@ const PendingComplaintsPage: React.FC = () => {
             setIsLoading(false);
             setIsRefreshing(false);
         }
-    }, [searchTerm, categoryFilter, sortField, sortDirection]);
+    }, [searchTerm, categoryFilter]);
 
     // Fetch categories
     const fetchCategories = async () => {
@@ -201,30 +201,30 @@ const PendingComplaintsPage: React.FC = () => {
     };
 
     // Update complaint status
-    const updateStatus = async (complaintId: number, statusId: number) => {
-        if (!isStaff) return;
-
-        try {
-            const token = getAuthToken();
-            const response = await fetch(`${baseUrl}complaints/${complaintId}/status`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ status_id: statusId })
-            });
-
-            if (response.ok) {
-                toast.success('Status updated successfully');
-                fetchPendingComplaints(complaints?.current_page || 1, false);
-            } else {
-                throw new Error('Failed to update status');
-            }
-        } catch (error: any) {
-            toast.error(error.message || 'Failed to update status');
-        }
-    };
+    // const updateStatus = async (complaintId: number, statusId: number) => {
+    //     if (!isStaff) return;
+    //
+    //     try {
+    //         const token = getAuthToken();
+    //         const response = await fetch(`${baseUrl}complaints/${complaintId}/status`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ status_id: statusId })
+    //         });
+    //
+    //         if (response.ok) {
+    //             toast.success('Status updated successfully');
+    //             fetchPendingComplaints(complaints?.current_page || 1, false);
+    //         } else {
+    //             throw new Error('Failed to update status');
+    //         }
+    //     } catch (error: any) {
+    //         toast.error(error.message || 'Failed to update status');
+    //     }
+    // };
 
     useEffect(() => {
         fetchCategories();
@@ -234,11 +234,11 @@ const PendingComplaintsPage: React.FC = () => {
         fetchPendingComplaints();
     }, [fetchPendingComplaints]);
 
-    const handleSort = (field: string) => {
-        const direction = sortField === field && sortDirection === 'asc' ? 'desc' : 'asc';
-        setSortField(field);
-        setSortDirection(direction);
-    };
+    // const _handleSort = (field: string) => {
+    //     const direction = sortField === field && sortDirection === 'asc' ? 'desc' : 'asc';
+    //     setSortField(field);
+    //     setSortDirection(direction);
+    // };
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('en-US', {

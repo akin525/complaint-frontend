@@ -165,27 +165,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
                 const userResponse = await validateUserSession(token);
                 updateAuthState({ progress: 50 });
 
-                // Step 3: Check system configuration
-                // const systemConfig = await fetchSystemConfig(token);
-                // updateAuthState({ progress: 90 });
-
-                // Step 4: Handle system states
-                // if (systemConfig.maintenance_mode) {
-                //     setSystemStatus('maintenance');
-                //     navigate("/maintenance");
-                //     return;
-                // }
-
-                // if (systemConfig.complaint_system_enabled === false) {
-                //     toast.warning("Complaint system is temporarily unavailable");
-                //     setSystemStatus('offline');
-                // }
-
                 // Step 5: Set user data
-                setUser({
-                    ...userResponse.user,
-                    lastLoginAt: new Date().toISOString(),
-                });
+                setUser(userResponse.user);  // Fixed: Removed the comma and comment
 
                 setSystemStatus('online');
                 updateAuthState({
