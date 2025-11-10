@@ -1,37 +1,49 @@
 import React, { createContext, useContext, useState } from "react";
 
-
-
 interface User {
   id: number;
-  firstname: string;
-  lastname: string;
+  name: string;
   email: string;
-  phone: string;
-  role:string;
-  profile_photo_path: string | null;
-  online?: string | null;
+  role: string;
+  student_id?: string | null;
+  department?: string | null;
   created_at?: string;
   updated_at?: string;
 }
 
 interface UserContextType {
   user: User | null;
-  setUser: (user: User) => void;
-  siteBot: string | null;
-  setSiteBot: (bot: string) => void;
+  setUser: (user: User | null) => void;
+  isStudent: () => boolean;
+  isStaff: () => boolean;
+  isAdmin: () => boolean;
+  isSuperAdmin: () => boolean;
+  hasAdminPrivileges: () => boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [siteBot, setSiteBot] = useState<string | null>(null);
+
+  const isStudent = () => user?.role === 'student';
+  const isStaff = () => user?.role === 'staff';
+  const isAdmin = () => user?.role === 'admin';
+  const isSuperAdmin = () => user?.role === 'superadmin';
+  const hasAdminPrivileges = () => user?.role === 'admin' || user?.role === 'superadmin';
 
   return (
-      <UserContext.Provider value={{ user, setUser, siteBot, setSiteBot }}>
-        {children}
-      </UserContext.Provider>
+    <UserContext.Provider value={{ 
+      user, 
+      setUser, 
+      isStudent, 
+      isStaff, 
+      isAdmin, 
+      isSuperAdmin,
+      hasAdminPrivileges 
+    }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 

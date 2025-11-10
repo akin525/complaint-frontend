@@ -15,21 +15,24 @@ import ResolvedComplaintsPage from "@/app/routes/dashboard/ResolvedComplaintsPag
 import CreateComplaint from "@/app/routes/dashboard/createcomplaint.tsx";
 import ComplaintDetailsPage from "@/app/routes/dashboard/complaintdetails.tsx";
 import ComplaintResponsePage from "@/app/routes/dashboard/ComplaintResponsePage.tsx";
+import SuperAdminDashboard from "@/app/routes/dashboard/superadmin-dashboard.tsx";
+import AdminDashboard from "@/app/routes/dashboard/admin-dashboard.tsx";
+import AdminUsers from "@/app/routes/dashboard/admin-users.tsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:LoginPage,
+    Component: LoginPage,
   },
-    {
+  {
     path: "/forgot-password",
     Component: ResetPasswordRequest,
   },
-    {
+  {
     path: "/set-password",
     Component: SetNewPassword,
   },
-    {
+  {
     path: "/maintenance",
     Component: Maintenance,
   },
@@ -41,79 +44,100 @@ export const router = createBrowserRouter([
     path: "/register",
     Component: RegisterPage,
   },
-    {
-        path: "/dashboard",
-        Component: () => (
-            <ProtectedRoute>
-                <Dashboard/>
-            </ProtectedRoute>
-        ),
-    },
   {
-        path: "/complaints",
-        Component: () => (
-            <ProtectedRoute>
-                <ComplaintsListPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints/:id",
-        Component: () => (
-            <ProtectedRoute>
-                <ComplaintDetailsPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints?status=pending",
-        Component: () => (
-            <ProtectedRoute>
-                <PendingComplaintsPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints?status=pending",
-        Component: () => (
-            <ProtectedRoute>
-                <PendingComplaintsPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints?status=in-progress",
-        Component: () => (
-            <ProtectedRoute>
-                <InProgressComplaintsPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints?status=resolved",
-        Component: () => (
-            <ProtectedRoute>
-                <ResolvedComplaintsPage/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints/create",
-        Component: () => (
-            <ProtectedRoute>
-                <CreateComplaint/>
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/complaints/create",
-        Component: () => (
-            <ProtectedRoute>
-                <ComplaintResponsePage/>
-            </ProtectedRoute>
-        ),
-    },
+    path: "/dashboard",
+    Component: () => (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/superadmin",
+    Component: () => (
+      <ProtectedRoute>
+        <SuperAdminDashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/dashboard",
+    Component: () => (
+      <ProtectedRoute>
+        <AdminDashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/users",
+    Component: () => (
+      <ProtectedRoute>
+        <AdminUsers />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints",
+    Component: () => (
+      <ProtectedRoute>
+        <ComplaintsListPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/:id",
+    Component: () => (
+      <ProtectedRoute>
+        <ComplaintDetailsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/pending",
+    Component: () => (
+      <ProtectedRoute>
+        <PendingComplaintsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/in-progress",
+    Component: () => (
+      <ProtectedRoute>
+        <InProgressComplaintsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/resolved",
+    Component: () => (
+      <ProtectedRoute>
+        <ResolvedComplaintsPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/create",
+    Component: () => (
+      <ProtectedRoute>
+        <CreateComplaint />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/complaints/:id/response",
+    Component: () => (
+      <ProtectedRoute>
+        <ComplaintResponsePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "*",
+    Component: NotFound,
+  },
 ]);
+
 export function AppRouter() {
   return <RouterProvider router={router} />;
 }
