@@ -185,13 +185,13 @@ export default function Sidebar({
                         show: true
                     },
                     {
-                        to: "/staff/complaints?status=in-progress",
+                        to: "/complaints?status=in-progress",
                         icon: <AlertTriangle size={20} />,
                         label: "In Progress",
                         show: true
                     },
                     {
-                        to: "/staff/complaints?status=resolved",
+                        to: "/complaints?status=resolved",
                         icon: <CheckCircle size={20} />,
                         label: "Resolved",
                         show: true
