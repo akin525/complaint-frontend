@@ -8,17 +8,17 @@ import {
   Settings,
   Activity,
   Database,
-  AlertTriangle,
+  // AlertTriangle,
   CheckCircle,
   Clock,
-  TrendingUp,
-  FileText,
+  // TrendingUp,
+  // FileText,
   Download,
   Trash2,
-  UserCog,
+  // UserCog,
   Power,
   Eye,
-  EyeOff,
+  // EyeOff,
 } from "lucide-react";
 import { getAuthToken } from "@/utils/auth";
 

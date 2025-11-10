@@ -3,9 +3,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { toast } from 'react-toastify';
 import {
-    Plus,
+    // Plus,
     Search,
-    Filter,
+    // Filter,
     RefreshCw,
     Eye,
     Clock,
@@ -13,20 +13,20 @@ import {
     User,
     Tag,
     FileText,
-    ChevronLeft,
-    ChevronRight,
-    MoreVertical,
+    // ChevronLeft,
+    // ChevronRight,
+    // MoreVertical,
     AlertCircle,
-    MessageSquare,
+    // MessageSquare,
     Grid,
     List,
-    SortAsc,
-    SortDesc,
-    X,
-    Loader,
+    // SortAsc,
+    // SortDesc,
+    // X,
+    // Loader,
     UserCheck,
-    Send,
-    Flag
+    // Send,
+    // Flag
 } from 'lucide-react';
 import { getAuthToken } from '@/utils/auth';
 import { useUser } from '@/context/UserContext';
@@ -90,8 +90,8 @@ interface ComplaintsResponse {
 }
 
 const PendingComplaintsPage: React.FC = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const [searchParams, ] = useSearchParams();
+    // const navigate = useNavigate();
     const { user } = useUser();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -99,9 +99,9 @@ const PendingComplaintsPage: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isRefreshing, setIsRefreshing] = useState(false);
-    const [showFilters, setShowFilters] = useState(false);
+    // const [showFilters, setShowFilters] = useState(false);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
-    const [selectedComplaints, setSelectedComplaints] = useState<number[]>([]);
+    // const [selectedComplaints, setSelectedComplaints] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [categoryFilter, setCategoryFilter] = useState(searchParams.get('category') || '');
     const [sortField, setSortField] = useState(searchParams.get('sort') || 'created_at');

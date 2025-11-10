@@ -43,6 +43,7 @@ interface UserResponse {
         department: string;
         created_at: string;
         updated_at: string;
+        lastLoginAt: string;
     };
 }
 

@@ -10,7 +10,7 @@ import {
     Image,
     FileIcon,
     Trash2,
-    Eye,
+    // Eye,
     EyeOff,
     AlertCircle,
     CheckCircle,
@@ -89,7 +89,7 @@ const UpdateComplaintPage: React.FC = () => {
         existing_attachments: []
     });
 
-    const isAdmin = user?.role === 'admin';
+    // const isAdmin = user?.role === 'admin';
     const isStaff = user?.role === 'staff' || user?.role === 'admin';
     const isOwner = user?.id === complaint?.user_id;
     const canEdit = isOwner || isStaff;

@@ -6,7 +6,6 @@ import {
     Calendar,
     User,
     Tag,
-    FileText,
     Download,
     Eye,
     Clock,
@@ -92,7 +91,7 @@ interface ComplaintDetails {
 const ComplaintDetailsEnhanced: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const { user: currentUser, isStudent, isStaff, isAdmin, isSuperAdmin } = useUser();
+    const { user: currentUser,  isStaff, isAdmin, isSuperAdmin } = useUser();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const [complaint, setComplaint] = useState<ComplaintDetails | null>(null);

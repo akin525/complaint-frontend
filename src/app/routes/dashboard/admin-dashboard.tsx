@@ -6,8 +6,6 @@ import {
   MessageSquare,
   CheckCircle,
   Clock,
-  TrendingUp,
-  AlertCircle,
   FileText,
   BarChart3,
   PieChart,

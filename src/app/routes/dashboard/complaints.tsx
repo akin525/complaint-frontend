@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router';
+import { Link,  useSearchParams } from 'react-router';
 import { toast } from 'react-toastify';
 import {
     Plus,
@@ -26,7 +26,7 @@ import {
     SortAsc,
     SortDesc,
     X,
-    Loader
+    // Loader
 } from 'lucide-react';
 import { getAuthToken } from '@/utils/auth';
 import { useUser } from '@/context/UserContext';
@@ -108,7 +108,7 @@ interface Filters {
 
 const ComplaintsListPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { user } = useUser();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 

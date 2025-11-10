@@ -5,6 +5,7 @@ interface User {
   name: string;
   email: string;
   role: string;
+  systemConfig: string;
   student_id?: string | null;
   department?: string | null;
   created_at?: string;

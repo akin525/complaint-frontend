@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router";
 import { Eye, EyeOff, ArrowLeft, GraduationCap, Users, BookOpen, Building } from "lucide-react";
 import { toast } from "react-toastify";

@@ -14,10 +14,8 @@ import {
     LogOut,
     GraduationCap,
     Bell,
-    BarChart3,
     Search,
     Plus,
-    Archive,
     Users,
     Shield,
     Tag,
@@ -96,7 +94,7 @@ export default function Sidebar({
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
-            removeAuthToken();
+            // removeAuthToken();
             logout();
             navigate('/login');
             toast.success('Logged out successfully');
@@ -121,12 +119,12 @@ export default function Sidebar({
                     label: "Overview",
                     show: true
                 },
-                {
-                    to: "/analytics",
-                    icon: <BarChart3 size={20} />,
-                    label: "Analytics",
-                    show: isStaff // Only staff and admin can see analytics
-                }
+                // {
+                //     to: "/analytics",
+                //     icon: <BarChart3 size={20} />,
+                //     label: "Analytics",
+                //     show: isStaff // Only staff and admin can see analytics
+                // }
             ]
         });
 

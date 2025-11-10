@@ -6,9 +6,6 @@ import {
     ArrowLeft,
     Send,
     Paperclip,
-    X,
-    Eye,
-    EyeOff,
     MessageSquare,
     Clock,
     User,
@@ -18,7 +15,6 @@ import {
     Image as ImageIcon,
     File,
     AlertCircle,
-    CheckCircle,
     RefreshCw,
     Plus,
     Trash2
